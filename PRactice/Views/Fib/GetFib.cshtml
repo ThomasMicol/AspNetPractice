@@ -1,0 +1,13 @@
+﻿@model PRactice.Models.Fib
+
+@{
+    ViewBag.Title = "GetFib";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach(int number in Model.fibSeq)
+{
+    <h1>@number</h1><br />
+}
+

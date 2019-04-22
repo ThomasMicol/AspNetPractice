@@ -1,0 +1,59 @@
+﻿@model PRactice.Models.Account
+
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Account</h1>
+
+@if (@Model.Name == "" || Model.Name == null)
+{
+    <h2>No account has the id of @Model.Id </h2>
+}
+else
+{
+    <p> Name: @Model.Name</p>
+    <p>Is Admin: @Model.IsAdmin</p>
+}
+
+<h2>Rentals</h2>
+@if (Model.IsAdmin)
+{
+    <a href="~/Rental/Index/@Model.Id">Rentals</a>
+}
+
+@if (Model.Rentals == null || Model.Rentals.Count == 0)
+{
+    <h3>There has been no rentals made by this account</h3>
+}
+else
+{
+    <table width="100%" border="1px black">
+        <tr>
+            <th>Name</th>
+            <th>Hire Period</th>
+            <th>Hire Date</th>
+            <th>Due Date</th>
+        </tr>
+
+        @foreach (var aRental in Model.Rentals)
+        {
+            <tr>
+                <td>@aRental.Name</td>
+                @if (aRental.HirePeriod == PRactice.Models.HirePeriodEnum.singleDay)
+                {
+                    <td>Single Day Hire</td>
+                }
+                else
+                {
+                    <td>Week Long Hire</td>
+                }
+                <td>@aRental.HireDate</td>
+
+
+            </tr>
+
+        }
+    </table>
+}

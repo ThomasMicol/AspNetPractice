@@ -1,0 +1,41 @@
+﻿@model List<PRactice.Models.Rental>
+
+
+@{
+    ViewBag.Title = "Rental Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (IsPost)
+    {
+
+        string BookName = Request.Form["BookName"];
+        string HireLength = Request.Form["HireLength"];
+
+    }
+}
+
+<h2>Rental</h2>
+
+@foreach (var aRental in Model)
+{
+    <h2>@aRental.Name</h2>
+}
+
+@using (Html.BeginForm("AddNewRental", "Rental", FormMethod.Post))
+{
+    <form method="post" width="100%">
+        <fieldset>
+            <legend>
+                Add Rental Books
+            </legend>
+            <input type="text" name="BookName" placeholder="Enter the name of the book here" />
+            <select name="HireLength">
+                <option value="Single Day">Single Day</option>
+                <option value="week">7 Days</option>
+            </select>
+            <input type="number" name="HiredTo" placeholder="Enter who you are hiring the book to"/>
+            <input type="submit" value="Submit" class="submit" />
+
+        </fieldset>
+    </form>
+}
