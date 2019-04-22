@@ -15,12 +15,14 @@ namespace PRactice.Controllers
             return View();
         }
 
+        [Route("Fib/{id}")]
         public ActionResult NewFib(int id)
         {
             Fib fibModel = new Fib() { NumberToCountTo = id, fibSeq = GetSeq(id) };
             return View(fibModel);
         }
 
+        [Route("Fib/")]
         public ActionResult GetFib()
         {
             int number = 20;

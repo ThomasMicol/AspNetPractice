@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create New Accounts</h2>
+
+@using(Html.BeginForm("AddUserAccount", "Account", FormMethod.Post))
+{
+    <form method="post">
+        <fieldset>
+            <input type="text" name="accountName" placeholder="Enter new account name here" />
+            <input type="checkbox" name="isAdminVal" value="unchecked" />
+            <input type="submit" value="Submit">
+        </fieldset>
+        
+    </form>
+}

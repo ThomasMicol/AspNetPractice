@@ -11,21 +11,26 @@ namespace PRactice.Controllers
     public class RentalController : Controller
     {
         // GET: Rental
+        [Route("Rental/")]
         public ActionResult Index()
         {
             return View(GetAllRentals());
         }
 
+        [Route("Edit/")]
         public ActionResult Edit()
         {
+            
             return View();
         }
 
         [HttpPost]
+        [Route("Rental/AddNewRental/{BookName}/{HireLength}/{HiredTo}")]
+        [Route("Rental/AddNewRental")]
         public void AddNewRental(string BookName, string HireLength, int HiredTo)
         {
             InsertNewRental(BookName, ConvertStringToHirePeriod(HireLength), HiredTo);
-            Response.Redirect("~/Rental/Index");
+            Response.Redirect("~/Rental");
         }
 
         private HirePeriodEnum ConvertStringToHirePeriod(string hirePeriod)
@@ -44,7 +49,7 @@ namespace PRactice.Controllers
 
         private void InsertNewRental(string BookName, HirePeriodEnum p, int HiredTo)
         {
-            String command = String.Format("INSERT INTO Rentals (Fk_AccountId, Name, HirePeriod, HireDate) Values ({0}, '{1}', {2}, {3})", HiredTo, BookName, (Int32)p, DateTime.Now.ToShortDateString());
+            String command = String.Format("INSERT INTO Rentals (Fk_AccountsId, Name, HirePeriod, HireDate) Values ({0}, '{1}', {2}, {3})", HiredTo, BookName, (Int32)p, DateTime.G);
             RunCommand(command); 
         }
 
